@@ -1,0 +1,70 @@
+{namespace fed=Tx_Fed_ViewHelpers}
+{namespace p=Tx_Plda_ViewHelpers}
+<p:imageUrl src="fileadmin/user_upload/lichtstroeme_koblenz_2011.jpg" as="backgroundImages">
+	<div class="pattern-overlay" style="background-image: url({backgroundImages.0});"><div class="pattern"></div></div>
+</p:imageUrl>
+
+<div class="background-copyright">LICHTSTRÖME Koblenz 2011 I Herbert Cybulska I Foto Jennifer Braun 06</div>
+
+<div class="off-canvas">
+	<div role="left">
+		<ul class="nav nav-vertical">
+			<fed:page.menu entryLevel="0" classActive="active">
+				<f:for each="{menu}" as="page" iteration="iteration">
+					<li class="{page.class}">
+						<a href="{page.link}" class="{page.class}">{page.title}</a>
+						<f:if condition="{page.hasSubPages}">
+							<fed:page.menu pageUid="{page.uid}" />
+						</f:if>
+					</li>
+				</f:for>
+			</fed:page.menu>
+		</ul>
+	</div>
+	<div role="main">
+		<div class="header">
+			<div class="navbar navbar-plda navbar-inverse">
+				<button type="button" class="btn btn-off-canvas" data-canvas-toggle="left">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+
+				<div class="navbar-inner">
+					<a class="brand" href="#"><img src="/typo3conf/ext/plda/Resources/Public/images/logo.png" /></a>
+					<div class="nav-collapse">
+						<ul class="nav nav-horizontal">
+							<fed:page.menu entryLevel="0" classActive="active">
+								<f:for each="{menu}" as="page" iteration="iteration">
+									<f:if condition="{page.hasSubPages}">
+										<f:then>
+											<li class="{page.class}">
+												<a class="{page.class}" href="{page.link}" target="{page.target}">
+													{page.title}
+												</a>
+													<fed:page.menu pageUid="{page.uid}" class="sub"/>
+											</li>
+										</f:then>
+										<f:else>
+											<li class="{page.class}">
+												<a href="{page.link}" class="{page.class}" target="{page.target}">{page.title}</a>
+											</li>
+										</f:else>
+									</f:if>
+								</f:for>
+							</fed:page.menu>
+						</ul>
+					</div>
+				</div>
+				<div class="plda-rainbow"></div>
+			</div>
+		</div>
+
+		<f:render section="content" />
+
+	</div>
+</div>
+
+<!--[if lt IE 7]>
+	<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->

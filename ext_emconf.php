@@ -11,7 +11,7 @@
 ########################################################################
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'Theme',
+	'title' => $_EXTKEY . ' Template',
 	'description' => '',
 	'category' => 'templates',
 	'author' => 'Marc Neuhaus',
@@ -32,12 +32,12 @@ $EM_CONF[$_EXTKEY] = array(
 	'version' => '0.0.0',
 	'constraints' => array(
 		'depends' => array(
-			'realurl' => '',
-			'seo_basics' => '',
-			'news' => '',
-			'fed' => '',
-			'gridelements' => '',
-			'imagecycle' => '',
+			'realurl' => '1.12.2',
+#			'seo_basics' => '0.8.3',
+#			'news' => '1.3.2',
+			'fed' => '4.7.5',
+			'flux' => '4.7.3',
+			'gridelements' => '1.3.12'
 		),
 		'conflicts' => array(
 		),

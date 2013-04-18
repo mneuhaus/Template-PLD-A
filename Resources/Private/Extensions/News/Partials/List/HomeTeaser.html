@@ -1,0 +1,36 @@
+{namespace n=Tx_News_ViewHelpers}
+<!--
+	=====================
+		Partials/List/HomeTeaser.html
+-->
+<script>
+	$(window).load(function() {
+		$('.flexslider').flexslider({
+			animation: "slide",
+			animationLoop: false,
+			slideshowSpeed: 1,
+			animationSpeed: 1000,
+			itemWidth: 200,
+			itemMargin: 5
+		});
+	});
+</script>
+<!-- Place somewhere in the <body> of your page -->
+<h4 class="slidernews">
+	<span >News</span>
+</h4>
+<div class="flexslider flexslider-carousel">
+
+  <ul class="slides">
+  	<f:for each="{news}" as="newsItem">
+  		<li>
+  			<div class="inner">
+	  			<n:link newsItem="{newsItem}" settings="{settings}"><h5>{newsItem.title}</h5></n:link>
+	  			<n:link newsItem="{newsItem}" settings="{settings}">
+	  				<f:format.crop maxCharacters="50" append="...">{newsItem.teaser}</f:format.crop>
+	  			</n:link>
+  			</div>
+		</li>
+	</f:for>
+  </ul>
+</div>

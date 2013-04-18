@@ -1,0 +1,64 @@
+{namespace com=Tx_Community_ViewHelpers}
+<f:layout name="Default"/>
+
+<f:section name="main">
+
+	<div class="tx_community_profile_details">
+
+<h3 class="profile"><span>{requestedUser.firstname} {requestedUser.lastname}</span>	</h3>
+<nav class="well">
+	<ul class="usermenu">
+		<li><f:link.page additionalParams="{tx_community: {user: user}}" pageUid="{settings.profilePage}">Profile</f:link.page></li>
+		<li>Projects</li>
+		<li>Awards</li>
+		<li>Publications</li>
+	</ul>
+</nav>
+<div class="wrapper row-fluid">
+	<div class="usersidebar span4">
+
+		<f:image src="{f:render(partial:'Profile/ImageUrl', arguments:'{user: requestedUser, settings: settings}')}"
+			 class="user-photo photo-edit" width="180c" height="185c" alt="{requestedUser.name}" />
+		<div class="userinfo">
+			<h3>{requestedUser.firstname} {requestedUser.lastname}</h3>
+			<p>
+				<span class="red">Born:</span> {requestedUser.dateOfBirth->f:format.date(format:'d.m.Y')}<br />
+				<span class="red">lastStart of profession</span> 15 <br />
+				<span class="red">Category:</span> Professional <br />
+				<span class="red">Office:</span> Bielefeld, Germany <br />
+			</p>
+		</div>
+		<div class="usercontact">
+			<h3>Contact</h3>
+			<p>
+				<strong>{requestedUser.name}</strong><br />
+				<f:render partial="Profile/Contact" arguments="{settings : settings, label : 'address', value : requestedUser.address}"/><br />
+				<f:render partial="Profile/Contact" arguments="{settings : settings, label : 'zip', value : requestedUser.zip}"/> <f:render partial="Profile/Contact" arguments="{settings : settings, label : 'city', value : requestedUser.city}"/><br />
+				<f:render partial="Profile/Contact" arguments="{settings : settings, label : 'country', value : requestedUser.country}"/><br />
+			</p>
+			<p>
+				<f:render partial="Profile/Contact" arguments="{settings : settings, label : 'phone', value : requestedUser.telephone}"/> <br />
+				<f:render partial="Profile/Detail" arguments="{settings : settings, label : 'fax', value : requestedUser.fax}"/>
+			</p>
+			<p>
+				<f:render partial="Profile/Contact" arguments="{settings : settings, label : 'email', value : requestedUser.email}"/> <br />
+				<f:render partial="Profile/Contact" arguments="{settings : settings, label : 'www', value : requestedUser.www}"/><br />
+			</p>
+		</div>
+	</div>
+	<div class="usercontent span8">
+		###imageslider###
+		<h2>{requestedUser.name}</h2>
+		<ul class="memberproperty">
+			<li><span class="red">Qualification</span> <p>{requestedUser.qualification}</p></li>
+			<li><span class="red">Design experience</span> <p>{requestedUser.designExperience}</p></li>
+			<li><span class="red">Field of work</span> <p>{requestedUser.fieldOfWork}</p></li>
+			<li><span class="red">Other activities</span> <p>{requestedUser.otherActivities}</p></li>
+			<li><span class="red">Languages</span> <p>{requestedUser.languages}</p></li>
+		</ul>
+		{requestedUser.about -> f:format.html() -> f:format.nl2br()}
+	</div>
+</div>
+
+	</div>
+</f:section>

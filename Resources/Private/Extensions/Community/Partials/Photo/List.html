@@ -1,0 +1,21 @@
+<f:if condition="{photos}">
+	<f:then>
+		<table>
+			<tr>
+				<th><f:translate key="tx_community_domain_model_photo.image" /></th>
+			</tr>
+			<f:for each="{photos}" as="photo">
+				<tr>
+					<td>
+						<a rel="lightbox[community-album]" href="{settings.album.image.prefix}{photo.image}">
+							<f:image src="{settings.album.image.prefix}{photo.image}" height="100m" width="100m" alt="photo"/>
+						</a>
+					</td>
+				</tr>
+			</f:for>
+		</table>
+	</f:then>
+	<f:else>
+		No photos
+	</f:else>
+</f:if>

@@ -1,0 +1,116 @@
+<f:layout name="Default"/>
+<f:section name="main">
+	<h2>{requestedUser.name}</h2>
+	<f:image src="{f:render(partial:'Profile/ImageUrl', arguments:'{user: requestedUser, settings: settings}')}"
+			 class="user-photo photo-edit" width="180c" height="180c" alt="{requestedUser.name}" />
+	<f:link.action action="editImage" class="button-link" controller="User"><f:translate key="profile.details.editImage"/></f:link.action>
+
+	<div id="data-edition-form" class="tx_community_profile_edit tx_community_form">
+		<f:form action="update" controller="User" object="{requestedUser}" name="updatedUser">
+			<h3><f:translate key="profile.details.title"/></h3>
+			<div class="row">
+				<label><f:translate key="profile.details.username"/></label>
+				<f:form.textfield disabled="disabled" property="username"/>
+			</div>
+			<div class="row">
+				<label><f:translate key="profile.details.email"/></label>
+				<f:form.textfield property="email"/>
+			</div>
+			<div class="row">
+				<label><f:translate key="profile.details.firstName"/></label>
+				<f:form.textfield property="firstName"/>
+			</div>
+			<div class="row">
+				<label><f:translate key="profile.details.lastName"/></label>
+				<f:form.textfield property="lastName"/>
+			</div>
+			<div class="row">
+				<label><f:translate key="profile.details.gender"/></label>
+				<f:form.select property="gender" options="{0 : '{f:translate(key:\'profile.details.gender.0\')}', 1 : '{f:translate(key:\'profile.details.gender.1\')}'}"/>
+			</div>
+			<div class="row">
+				<label><f:translate key="profile.details.dateOfBirth"/></label>
+				<f:form.textfield property="dateOfBirth" value="{requestedUser.dateOfBirth->f:format.date(format:'d.m.Y')}"/>
+			</div>
+			<div class="row">
+				<label><f:translate key="profile.details.address"/></label>
+				<f:form.textarea property="address" rows="3" cols="50"/>
+			</div>
+			<div class="row">
+				<label><f:translate key="profile.details.city"/></label>
+				<f:form.textfield property="city"/>
+			</div>
+			<div class="row">
+				<label><f:translate key="profile.details.zip"/></label>
+				<f:form.textfield property="zip"/>
+			</div>
+			<div class="row">
+				<label><f:translate key="profile.details.country"/></label>
+				<f:form.textfield property="country"/>
+			</div>
+			<div class="row">
+				<label><f:translate key="profile.details.www"/></label>
+				<f:form.textfield property="www"/>
+			</div>
+			<div class="row">
+				<label><f:translate key="profile.details.cellphone"/></label>
+				<f:form.textfield property="cellphone"/>
+			</div>
+			<div class="row">
+				<label><f:translate key="profile.details.phone"/></label>
+				<f:form.textfield property="telephone"/>
+			</div>
+
+			<div class="row">
+				<label>Qualification</label>
+				<f:form.textarea property="qualification" rows="3" cols="50"/>
+			</div>
+			<div class="row">
+				<label>Other Activities</label>
+				<f:form.textarea property="otherActivities" rows="3" cols="50"/>
+			</div>
+			<div class="row">
+				<label>Field of Work</label>
+				<f:form.textarea property="fieldOfWork" rows="3" cols="50"/>
+			</div>
+			<div class="row">
+				<label>Design Experience</label>
+				<f:form.textarea property="designExperience" rows="3" cols="50"/>
+			</div>
+			<div class="row">
+				<label>Qualification</label>
+				<f:form.textarea property="qualification" rows="3" cols="50"/>
+			</div>
+			<div class="row">
+				<label>Languages</label>
+				<f:form.textfield property="languages"/>
+			</div>
+			<div class="row">
+				<label>About</label>
+				<f:form.textarea property="about" rows="3" cols="50"/>
+			</div>
+			<div class="row">
+				<label>Awards</label>
+				<f:form.textarea property="awards" rows="3" cols="50"/>
+			</div>
+			<div class="row">
+				<label>Publications</label>
+				<f:form.textarea property="publications" rows="3" cols="50"/>
+			</div>
+
+
+			<f:form.submit value="{f:translate(key:'profile.details.edit.submit')}"/>
+		</f:form>
+		<f:link.action action="deleteAccount" controller="User" class="button-link" id="delete-account-link"><f:translate key='profile.delete.button'/></f:link.action>
+		<script type="text/javascript">
+			jQuery(function($){
+				$('#delete-account-link').click(function(){
+					var answer = confirm ("<f:translate key='profile.delete.sureQuestion'/>");
+					if (!answer) {
+						return false;
+					}
+				});
+			});
+		</script>
+	</div>
+</f:section>

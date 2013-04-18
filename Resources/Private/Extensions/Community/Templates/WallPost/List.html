@@ -1,0 +1,64 @@
+{namespace com=Tx_Community_ViewHelpers}
+<f:layout name="Default"/>
+
+<f:section name="main">
+	<div class="community-wall">
+		<f:if condition="{wallPosts -> f:count()} == 0">
+			<f:translate key="wallPost.list.noMessages"/>
+		</f:if>
+		<f:widget.paginate objects="{wallPosts}" as="paginatedWallPosts" configuration="{itemsPerPage: 10, insertAbove : 0, insertBelow: 1}">
+			<f:for each="{paginatedWallPosts}" as="wallPost">
+				<div class="wall-item-wrap">
+					<div class="wall-item">
+						<f:if condition="{wallPost.sender}">
+							<f:then>
+								<f:link.page additionalParams="{tx_community : {user : wallPost.sender}}" class="item-image">
+									<f:image src="{f:render(partial:'Profile/ImageUrl', arguments:'{user : wallPost.sender, settings : settings}')}" class="user-photo-thumbnail" width="48c" height="47c" alt="{wallPost.sender.name}" />
+								</f:link.page>
+							</f:then>
+							<f:else>
+								<f:image src="{settings.profile.image.defaultImage}"
+									class="user-photo-thumbnail item-image" width="48c" height="47c" alt="{f:translate(key:'profile.deletedUserName')}"
+								/>
+							</f:else>
+						</f:if>
+						<div class="item-content-wrap">
+							<com:sameUser requestingUser="{requestingUser}" requestedUser="{requestedUser}">
+								<div class="item-delete">
+									<f:link.action action="delete" additionalParams="{tx_community : {wallPost : wallPost}}">
+										X
+									</f:link.action>
+								</div>
+							</com:sameUser>
+							<div class="content-row">
+								<f:if condition="{wallPost.sender}">
+									<f:then>
+										<f:link.page additionalParams="{tx_community : {user : wallPost.sender}}">
+											{wallPost.subject}
+										</f:link.page>
+									</f:then>
+									<f:else>
+										{wallPost.subject}
+									</f:else>
+								</f:if>
+							</div>
+							<div class="content-row">
+								<div class="content-text">
+									<p><f:format.nl2br><com:parseSmilies><com:parseLinks string="{wallPost.message}" /></com:parseSmilies></f:format.nl2br></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</f:for>
+			<script type="text/javascript">
+				jQuery('.wall-item .item-delete').click(function(){
+					var answer = confirm ("<f:translate key='wallPost.list.confirm'/>");
+					if (!answer) {
+						return false;
+					}
+				});
+			</script>
+		</f:widget.paginate>
+	</div>
+</f:section>

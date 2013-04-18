@@ -1,0 +1,51 @@
+<f:layout name="Default"/>
+
+<f:section name="main">
+{namespace com=Tx_Community_ViewHelpers}
+<div class="messages threaded">
+	<h2><f:translate key="message.thread.header" arguments="{0: '{requestedUser.name}'}"/> </h2>
+	<f:for each="{messages}" as="message">
+		<div class="message {com:sameUser(requestingUser:'{requestingUser}', requestedUser:'{message.sender}', then:'sent', else:'show')}">
+			<div class="icon-wrap">
+				<f:if condition="{message.sender}">
+					<f:then>
+					<f:link.page additionalParams="{tx_community: {user: message.sender}}" pageUid="{settings.profilePage}">
+						<f:image src="{f:render(partial:'Profile/ImageUrl', arguments:'{user: message.sender, settings: settings}')}"
+							class="user-photo-thumbnail" width="60" height="80m" alt="{message.sender}"
+						/>
+					</f:link.page>
+					</f:then>
+					<f:else>
+						<f:image src="{settings.profile.image.defaultImage}"
+							class="user-photo-thumbnail" width="60" height="80m" alt="{f:translate(key:'profile.deletedUserName')}"
+						/>
+					</f:else>
+				</f:if>
+			</div>
+			<div class="content-wrap">
+				<div class="message-header">
+					<div class="text-info">
+						<f:render partial="Profile/LinkToProfile" arguments="{user: message.sender, settings: settings}"/>
+						<div class="message-date"><f:format.date format="d.m.Y">{message.sentDate}</f:format.date> <f:format.date format="H:i">{message.sentDate}</f:format.date></div>
+					</div>
+				</div>
+				<div class="content">
+					<p><f:format.nl2br>{message.message}</f:format.nl2br></p>
+				</div>
+				<com:sameUser requestingUser="{requestingUser}" requestedUser="{message.sender}">
+				<div class="message-tools">
+					<f:link.action class="delete" action="deleteThreaded" controller="Message" arguments="{message: message}">
+						<f:translate key="message.thread.delete"/>
+					</f:link.action>
+				</div>
+				</com:sameUser>
+			</div>
+		</div>
+	</f:for>
+	<script type="text/javascript">
+		jQuery('.messages .message .delete').click(function(){
+			return confirm ("<f:translate key='message.delete.confirm'/>");
+			});
+	</script>
+</div>
+</f:section>

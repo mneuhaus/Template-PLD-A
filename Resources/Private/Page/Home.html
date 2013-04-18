@@ -1,0 +1,55 @@
+{namespace fed=Tx_Fed_ViewHelpers}
+{namespace flux=Tx_Flux_ViewHelpers}
+
+<f:layout name="Page" />
+
+<f:section name="Configuration">
+	<flux:flexform id="home" label="Home">
+
+	    <flux:flexform.sheet name="design" label="Design">
+			<flux:flexform.field.group internalType="file" allowed="jpg,png" maxItems="1" name="backgroundImage" label="Background Image" />
+	    </flux:flexform.sheet>
+
+  	</flux:flexform>
+</f:section>
+
+<f:section name="content">
+  	<fed:page.renderContent column="1" slide="-1" />
+  	<div id="frontpage" class="container header ">
+	<div class="row">
+		<div class="span5 well ">
+			<h1>Professional Lighting Designers' Association</h1>  
+			<p>The Professional Lighting Designers' Association PLDA was originally founded as the European Lighting Designers' Association ELDA+...</p>
+			<a class="btn btn-red btn-warning btn-block" href="/plda">more</a>
+		</div>
+		<div class="homebtn span5 well-home btn-red">
+			<a href="plda/our-sponsors/" alt="Circle of Sponsors"><i class="icon-chevron-right icon-white"></i> Circle of Sponsors</a>
+			<a href="http://old.pld-a.org/48.0.html" alt="Find a Lighting Designer" class=""><i class="icon-chevron-right icon-white"></i> Find a Lighting Designer</a>
+		</div>
+	</div>
+</div>
+	<footer class="fixed-bottom">
+		<fed:page.renderContent column="3" slide="-1" />
+		<div class="footer-inner">
+			<div class="floater pull-left">	
+				<ul class="nav nav-horizontal">
+					<fed:page.menu pageUid="129" entryLevel="0" classActive="active">
+						<f:for each="{menu}" as="page" iteration="iteration">
+							<li>
+								<a href="{page.link}">{page.title}</a> 
+							</li>
+						</f:for>
+					</fed:page.menu>
+				</ul>
+			</div>
+			<div class="floater pull-right">
+				<ul class="socialnetworksfront">
+      				<li><a href="http://www.facebook.com/pages/Professional-Lighting-Designers-Association/44662210702" class="facebook" taregt="_blank" rel="tooltip" title="like out facebookpage!">&nbsp;</a></li>
+      				<li><a href="http://www.linkedin.com/groups?gid=1956567" class="linkedin" rel="tooltip" title="our LinkedIn-Profile">&nbsp;</a></li>
+      				<li><a href="/news" class="rss" rel="tooltip" title="stay uptodate visit our blog!">&nbsp;</a></li>
+      				<li><a href="/services/contact/" class="mail" rel="tooltip" title="get in touch!">&nbsp;</a></li>
+      			</ul>
+      		</div>
+		</div>
+	</footer>
+</f:section>

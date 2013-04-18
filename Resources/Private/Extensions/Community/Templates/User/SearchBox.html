@@ -1,0 +1,8 @@
+<f:layout name="Default"/>
+
+<f:section name="main">
+	<f:form action="search" controller="User" pageUid="{settings.searchPage}" >
+		<f:form.textfield name="searchWord"/>
+		<f:form.submit name="submitSearch" value="{f:translate(key:'search.form.submit')}"/>
+	</f:form>
+</f:section>

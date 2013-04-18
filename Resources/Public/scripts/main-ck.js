@@ -1,0 +1,1 @@
+$(window).load(function(){$(".flexslider-carousel").flexslider({animation:"slide",itemWidth:200,itemMargin:5})});

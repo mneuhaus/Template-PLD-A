@@ -1,0 +1,49 @@
+{namespace fed=Tx_Fed_ViewHelpers}
+<div class="container">
+    <header class="start">
+		<ul class="nav list service-navi pull-right">
+			<fed:page.menu pageUid="1" classActive="active">
+				<f:for each="{menu}" as="page" iteration="iteration">
+					<li class="{page.class}">
+						<a href="{page.link}" class="{page.class}">{page.title}</a>
+						<f:if condition="{page.hasSubPages}">
+							<ul>
+							<fed:page.menu pageUid="{page.uid}" />
+							</ul>
+						</f:if>
+					</li>
+				</f:for>
+			</fed:page.menu>
+		</ul>
+	    <div class="row">
+	        
+	        <h2><a href="/"><f:image src="{f:uri.resource(path:'img/logo.png',extensionName:'plda')}" alt="Professional Lighting Designers` Association" /></a>Professional Lighting Designers` Association</h2>
+        </div>
+        <h1><f:image src="{f:uri.resource(path:'img/bolt.png',extensionName:'plda')}" alt="My Image" />Welcome to our activity-blog</h1>
+    </header>
+    <section class="main ">
+    	<f:render section="content" />    
+    </section>
+
+</div><!-- /container -->
+
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<script src="lib/bootstrap/js/jquery.js"></script>
+<script src="lib/bootstrap/js/google-code-prettify/prettify.js"></script>
+<script src="lib/bootstrap/js/bootstrap-transition.js"></script>
+<script src="lib/bootstrap/js/bootstrap-alert.js"></script>
+<script src="lib/bootstrap/js/bootstrap-modal.js"></script>
+<script src="lib/bootstrap/js/bootstrap-dropdown.js"></script>
+<script src="lib/bootstrap/js/bootstrap-scrollspy.js"></script>
+<script src="lib/bootstrap/js/bootstrap-tab.js"></script>
+<script src="lib/bootstrap/js/bootstrap-tooltip.js"></script>
+<script src="lib/bootstrap/js/bootstrap-popover.js"></script>
+<script src="lib/bootstrap/js/bootstrap-button.js"></script>
+<script src="lib/bootstrap/js/bootstrap-collapse.js"></script>
+<script src="lib/bootstrap/js/bootstrap-carousel.js"></script>
+<script src="lib/bootstrap/js/bootstrap-typeahead.js"></script>
+<script src="lib/bootstrap/js/application.js"></script>

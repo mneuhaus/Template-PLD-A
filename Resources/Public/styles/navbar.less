@@ -1,0 +1,87 @@
+.plda-rainbow {
+//	background: ;
+	height: 1px;
+}
+.navbar-plda {
+	margin-top: 30px;
+	background:url(../images/rainbow-line.png) repeat-x bottom, url(../images/navbar.png) #353436 repeat-x;
+	position: relative;
+	min-height: 40px;
+	.box-shadow(0 0px 5px rgba(0,0,0,.2));
+
+	.btn-off-canvas {
+		margin-top: 6px;
+		margin-left: 5px;
+	}
+
+	.navbar-inner {
+		background: none;
+		border: none;
+		min-height: 33px;
+		width: 940px;
+	}
+
+	.navbar-inner .nav-collapse {
+		margin-top: 1px;
+	}
+
+	.navbar-inner .nav-collapse > .nav {
+		margin-left: 130px;
+
+		& > li > a {
+			background: none;
+			text-shadow: none;
+			color: white;
+			padding: 12px 10px;
+			letter-spacing: 1px;
+			font-weight: 400;
+			font-size: 12px;
+		}
+
+		& > li.active > a,
+		& > li:hover > a {
+			background: white;
+			color: @plda-red;
+			font-weight: 400;
+		}
+
+		.nav-header {
+			color: @plda-red;
+			border-bottom: 1px solid @plda-red;
+			font-size: 14px;
+			font-weight: 500;
+			padding: 3px 0;
+		}
+
+		.nav-slide {
+			padding: 10px 10px 10px;
+
+			li > a {
+				padding: 5px 0 0;
+				font-size: 13px;
+			}
+
+			li > a:hover {
+				color: @plda-red;
+			}
+		}
+	}
+}
+
+
+body .navbar-plda .brand {
+	#gradient > .vertical(#f2f2f2, #ffffff);
+	.box-shadow(0 0px 5px rgba(0,0,0,.2));
+	.border-radius(0);
+	position: absolute;
+	height: 50px;
+	width: 90px;
+	top: -10px;
+	padding: 5px 10px;
+	margin-left: 0px;
+
+	img {
+		height: 50px;
+		width: auto;
+	}
+}

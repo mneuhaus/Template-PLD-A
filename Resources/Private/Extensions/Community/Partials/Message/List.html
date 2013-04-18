@@ -1,0 +1,60 @@
+{namespace com=Tx_Community_ViewHelpers}
+<div class="messages">
+	<f:widget.paginate objects="{messages}" as="paginatedWallPosts" configuration="{itemsPerPage: 10, insertAbove : 0, insertBelow: 1}">
+		<f:for each="{messages}" as="message">
+			<f:if condition="{message.read}">
+				<f:then>
+					<div class="message show">
+				</f:then>
+				<f:else>
+					<div class="message read">
+				</f:else>
+			</f:if>
+				<div class="icon-wrap">
+					<f:if condition="{message.sender}">
+						<f:then>
+						<f:link.page additionalParams="{tx_community: {user: message.sender}}" pageUid="{settings.profilePage}">
+							<f:image src="{f:render(partial:'Profile/ImageUrl', arguments:'{user: message.sender, settings: settings}')}"
+								class="user-photo-thumbnail" width="60" height="80m" alt="{message.sender}"
+							/>
+						</f:link.page>
+						</f:then>
+						<f:else>
+							<f:image src="{settings.profile.image.defaultImage}"
+								class="user-photo-thumbnail" width="60" height="80m" alt="{f:translate(key:'profile.deletedUserName')}"
+							/>
+						</f:else>
+					</f:if>
+				</div>
+				<div class="content-wrap">
+					<div class="message-header">
+						<div class="item-delete">
+							<f:link.action action="delete" additionalParams="{tx_community : {message : message, redirectAction: 'inbox'}}" title="{f:translate(key:'message.list.delete')}">
+								X
+							</f:link.action>
+						</div>
+						<span>
+							<f:translate key="message.read.from"/>
+							<f:render partial="Profile/LinkToProfile" arguments="{user: message.sender, settings: settings}"/>
+							<br />
+							<small><f:format.date format="d.m.Y, H:i">{message.sentDate}</f:format.date></small>
+						</span>
+						<p class="message-title">
+							<f:link.action action="read" controller="Message" arguments="{message : message}">
+								<f:format.crop maxCharacters="50">{message.subject}</f:format.crop>
+							</f:link.action>
+						</p>
+					</div>
+					<div class="content">
+						<p><f:format.crop maxCharacters="50"><f:format.nl2br><com:parseSmilies><com:parseLinks string="{message.message}" /></com:parseSmilies></f:format.nl2br></f:format.crop></p>
+						<f:if condition="{com:strlen(value: message.message)} > 50">
+							<f:link.action action="read" controller="Message" arguments="{message : message}" class="show">
+								<f:translate key="message.list.readMore"/>
+							</f:link.action>
+						</f:if>
+					</div>
+				</div>
+			</div>
+		</f:for>
+	</f:widget.paginate>
+</div>

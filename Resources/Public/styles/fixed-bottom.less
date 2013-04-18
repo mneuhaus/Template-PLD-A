@@ -1,0 +1,17 @@
+.fixed-bottom {
+	position: fixed;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: @zindexFixedNavbar;
+}
+
+
+@media (max-width: 979px) {
+	.fixed-bottom {
+		position: static;
+		right: auto;
+		left: auto;
+		bottom: auto;
+	}
+}

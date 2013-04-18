@@ -20,14 +20,7 @@ config{
 	config.linkVars = L
 }
 
-config.sys_language_uid = 1
-config.language = de
-config.locale_all = de_DE
-config.htmlTag_langKey = de_DE
-
-[globalVar = GP:L=0]
-    config.sys_language_uid = 0
-    config.language = en
-    config.locale_all = en_GB
-    config.htmlTag_langKey = en_GB
-[global] 
+config.sys_language_uid = 0
+config.language = en
+config.locale_all = en_GB
+config.htmlTag_langKey = en_GB

@@ -1,0 +1,105 @@
+{namespace fed=Tx_Fed_ViewHelpers}
+{namespace flux=Tx_Flux_ViewHelpers}
+
+<f:layout name="Page" />
+
+<f:section name="Configuration">
+	<flux:flexform id="default-page" label="Default">
+
+	    <flux:flexform.sheet name="design" label="Design">
+			<flux:flexform.field.group internalType="file" allowed="jpg,png" maxItems="1" name="backgroundImage" label="Background Image" />
+	    </flux:flexform.sheet>
+
+  </flux:flexform>
+</f:section>
+
+<f:section name="content">
+	<style type="text/css">
+		.pattern-overlay {height: 200px; background-position: 0px -50px; }
+		.background-copyright { bottom: auto; top: 180px; }
+	</style>
+	<div class="container">
+		<div class="row">
+			<div class="span3" role="sidebar">
+				<ul class="nav nav-vertical well"><li class="nav-header bordered">{page.title}</li>
+					<fed:page.menu entryLevel="1" classActive="active">
+						<f:for each="{menu}" as="page" iteration="iteration">
+							<f:if condition="{page.hasSubPages}">
+								<f:then>
+									<li class="{page.class} dropdown">
+										<a class="{page.class}" href="{page.link}">
+											{page.title}
+										</a>
+										<ul class="dropdown-menu">
+											<fed:page.menu pageUid="{page.uid}" />
+										</ul>
+									</li>
+								</f:then>
+								<f:else>
+									<li>
+										<a href="{page.link}">{page.title}</a>
+									</li>
+								</f:else>
+							</f:if>
+						</f:for>
+					</fed:page.menu>
+					<fed:page.renderContent column="1" />
+				</ul>
+			</div>
+			<div class="span9" role="content">
+				<f:flashMessages />
+				<fed:page.renderContent column="0" />
+			</div>
+		</div>
+	</div>
+
+	<footer class="footer">
+      <div class="container">
+      	<div class="row">
+      		<div class="span3">
+      			<h5>Soical Networks</h5>
+      			<ul class="socialnetworks">
+      				<li><a href="http://www.facebook.com/pages/Professional-Lighting-Designers-Association/44662210702" class="facebook" taregt="_blank" rel="tooltip" title="like out facebookpage!">&nbsp;</a></li>
+      				<li><a href="http://www.linkedin.com/groups?gid=1956567" class="linkedin" rel="tooltip" title="our LinkedIn-Profile">&nbsp;</a></li>
+      				<li><a href="/news" class="rss" rel="tooltip" title="stay uptodate visit our blog!">&nbsp;</a></li>
+      				<li><a href="/services/contact/" class="mail" rel="tooltip" title="get in touch!">&nbsp;</a></li>
+      			</ul>
+      		</div>
+      		<div class="span3">
+      			<h5>PLDA</h5>
+      			<ul class="pldafooter">
+	      			<fed:page.menu pageUid="110" entryLevel="0" classActive="active">
+						<f:for each="{menu}" as="page" iteration="iteration">
+							<li class="{page.class}">
+								<a href="{page.link}" class="{page.class}">{page.title}</a>
+							</li>
+						</f:for>
+					</fed:page.menu>
+				</ul>
+      		</div>
+      		<div class="span3">
+      			<h5>Contact</h5>
+					<address>
+					  	<strong>Professional Lighting <br />Designers` Association</strong><br>
+					  	Haller Str. 209<br>
+					  	33334 Gütersloh<br>
+					  	<abbr title="Phone">Telephone:</abbr> +49 (0)5241 9645902 <br />
+					  	<abbr title="Mail">E-Mail:</abbr> info(at)pld-a.org 
+					</address>
+      		</div>
+      		<div class="span3">
+      			<h5>Imprint</h5>
+      			<ul class="pldaimprint">
+				<fed:page.menu pageUid="129" entryLevel="0" classActive="active">
+					<f:for each="{menu}" as="page" iteration="iteration">
+						<li class="{page.class}">
+							<a href="{page.link}" class="{page.class}">{page.title}</a>
+						</li>
+					</f:for>
+				</fed:page.menu>
+				<ul class="pldafooter">
+      		</div>
+      	</div>
+      </div>
+    </footer>
+</f:section>

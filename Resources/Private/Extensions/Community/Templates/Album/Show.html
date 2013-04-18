@@ -1,0 +1,42 @@
+{namespace com=Tx_Community_ViewHelpers}
+<f:layout name="Default" />
+
+<f:section name="main">
+	<h1>{album.name}</h1>
+	<p>by <f:link.page additionalParams="{tx_community : {user : requestedUser}}" pageUid="{settings.profilePage}">{requestedUser.name}</f:link.page><p>
+
+	<com:sameUser requestingUser="{requestingUser}" requestedUser="{requestedUser}">
+		<table class="tx-community-pi1">
+			<tr>
+				<td><f:translate key="tx_community_domain_model_album.name" /></td>
+				<td>{album.name}</td>
+			</tr>
+			<tr>
+				<td><f:translate key="tx_community_domain_model_album.private" /></td>
+				<td><f:render partial="Album/PrivacyToString" arguments="{privacy: album.private}" /></td>
+			</tr>
+		</table>
+	</com:sameUser>
+
+	<com:hasAccessToAlbum album="{album}" relation="{relation}" requestingUser="{requestingUser}">
+		<f:then>
+			<com:sameUser requestingUser="{requestingUser}" requestedUser="{album.user}">
+				<f:then>
+					<f:render partial="Photo/ListForOwner" arguments="{photos:album.photos, settings : settings}" />
+				</f:then>
+				<f:else>
+					<f:render partial="Photo/List" arguments="{photos:album.photos, settings : settings}" />
+				</f:else>
+			</com:sameUser>
+		</f:then>
+		<f:else>
+			<f:translate key="profile.album.accessDenied"/>
+		</f:else>
+	</com:hasAccessToAlbum>
+
+	<f:link.action action="list" arguments="{user : album.user}">Back to list</f:link.action><br />
+	<com:sameUser requestingUser="{requestingUser}" requestedUser="{album.user}">
+		<f:link.action action="new" controller="Photo" arguments="{album : album}">New Photo</f:link.action>
+		<f:link.action action="new">New Album</f:link.action>
+	</com:sameUser>
+</f:section>

@@ -1,0 +1,37 @@
+@navVerticalIndent: 10px;
+@navVerticalPadding: 5px 10px;
+
+.nav-vertical {
+	.clearfix();
+
+	ul, li {
+		margin: 0;
+	}
+
+	li {
+	  float: none;
+	  display: block;
+	}
+
+	li > a{
+		display: block;
+	  	padding: @navVerticalPadding;
+	}
+
+	ul a {
+		padding-left: @navVerticalIndent * 2;
+	}
+
+	ul ul a {
+		padding-left: @navVerticalIndent * 3;
+	}
+}
+
+.nav-vertical.well {
+	padding: 0;
+
+	a {
+		width: 100%;
+		box-sizing: border-box;
+	}
+}

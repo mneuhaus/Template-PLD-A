@@ -1,0 +1,44 @@
+body [role='main'] > .header {
+	min-height: 170px;
+}
+
+footer {
+	background: #eeeeee url(../images/rainbow-line.png) repeat-x;
+	padding: 30px 0;
+	margin-top: 20px;
+}
+
+footer.fixed-bottom {
+	background: none;
+
+	.footer-inner {
+		background: @plda-black;
+		width: 400px;
+		margin: 0 auto;
+		padding: 10px 10px 10px;
+	}
+
+	.flexslider-carousel {
+		width: 600px;
+		margin: 0 auto 10px;
+		.border-radius(0);
+		.flex-control-nav {
+			display: none;
+		}
+	}
+
+	.nav-horizontal {
+		margin-bottom: 0;
+		li a {
+			border-left: 1px solid white;
+			padding: 0 4px;
+			font-size: 12px;
+			font-weight: 300;
+			color: white;
+		}
+
+		li:first-child a {
+			border-left: none;
+		}
+	}
+}

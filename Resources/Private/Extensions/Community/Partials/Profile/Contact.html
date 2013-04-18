@@ -1,0 +1,6 @@
+{namespace com=Tx_Community_ViewHelpers}
+<f:if condition="{value}">
+	<f:if condition="{com:inList(list:settings.profile.details.showDetails, value:label)}">
+		<com:parseSmilies><com:parseLinks string="{value}" /></com:parseSmilies>
+	</f:if>
+</f:if>
